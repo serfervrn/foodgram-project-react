@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 from django.db import models
+from django.db.models import UniqueConstraint
 
 
 class User(AbstractUser):
@@ -11,6 +13,13 @@ class User(AbstractUser):
     username = models.CharField(
         'Имя пользователя',
         max_length=150,
+        unique=True,
+        validators=[
+            RegexValidator(
+                regex=r'^[\w.@+-]+$',
+                message='Не корректные символы',
+            ),
+        ]
     )
     first_name = models.CharField(
         'Имя',
@@ -30,3 +39,30 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class Follow(models.Model):
+
+    user = models.ForeignKey(
+        User,
+        related_name='follower',
+        on_delete=models.CASCADE,
+        verbose_name='Подписчик'
+    )
+    author = models.ForeignKey(
+        User,
+        related_name='author',
+        on_delete=models.CASCADE,
+        verbose_name='Автор'
+    )
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=['user', 'author'],
+                name='user_author_unique'
+            )
+        ]
+
+    def __str__(self):
+        return f'Пользователь {self.user} подписался на {self.author}'
