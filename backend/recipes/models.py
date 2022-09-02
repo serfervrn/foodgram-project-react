@@ -20,12 +20,6 @@ class Ingredient(models.Model):
         ordering = ['name']
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
-        constraints = [
-            UniqueConstraint(
-                fields=['name', 'measurement_unit'],
-                name='ingredient_name_unit_unique'
-            )
-        ]
 
 
 class Tag(models.Model):

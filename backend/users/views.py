@@ -34,7 +34,7 @@ class CastomUserViewSet(UserViewSet):
     )
     def subscriptions(self, request, pk=None):
         subscriptions_list = self.paginate_queryset(
-            User.objects.filter(following__user=request.user)
+            User.objects.filter(author__user=request.user)
         )
         serializer = FollowListSerializer(
             subscriptions_list, many=True, context={
@@ -52,7 +52,7 @@ class CastomUserViewSet(UserViewSet):
         if request.method != 'POST':
             subscription = get_object_or_404(
                 Follow,
-                following=get_object_or_404(User, id=id),
+                author=get_object_or_404(User, id=id),
                 user=request.user
             )
             self.perform_destroy(subscription)
@@ -60,7 +60,7 @@ class CastomUserViewSet(UserViewSet):
         serializer = FollowSerializer(
             data={
                 'user': request.user.id,
-                'following': get_object_or_404(User, id=id).id
+                'author': get_object_or_404(User, id=id).id
             },
             context={'request': request}
         )

@@ -21,14 +21,17 @@ class AmountIngredientForRecipeInLine(admin.TabularInline):
     model = RecipeIngredient
 
 
+
+
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'author')
+    list_display = ('name', 'author', )
     readonly_fields = ('number_additions_to_favorites',)
     list_filter = ('author', 'name', 'tags')
     list_per_page = 20
-    inlines = (AmountIngredientForRecipeInLine,)
+    inlines = (AmountIngredientForRecipeInLine, )
     empty_value_display = '-пусто-'
+
 
     def number_additions_to_favorites(self, obj):
         return obj.favorite.count()
