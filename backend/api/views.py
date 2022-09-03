@@ -7,7 +7,6 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from api import filters
 from api.filters import RecipeFilter, IngredientFilter
 from api.pagination import CustomPagination
 from api.permissions import IsAuthorOrAdminOrReadOnly
@@ -25,7 +24,6 @@ class TagViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = None
 
 
-
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     permission_classes = (IsAuthorOrAdminOrReadOnly,)
@@ -39,43 +37,43 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return RecipeSerializer
 
     @staticmethod
-    def post_method_for_action(request, pk, serializers):
+    def post_action(request, pk, serializers):
         data = {'user': request.user.id, 'recipe': pk}
         serializer = serializers(data=data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    @action(methods=['POST'], detail=True,
-            permission_classes=[IsAuthenticated])
-    def favorite(self, request, pk):
-        return self.post_method_for_action(request=request, pk=pk,
-                                           serializers=FavoriteSerializer)
-
-    @action(methods=['POST'], detail=True,
-            permission_classes=[IsAuthenticated],
-            )
-    def shopping_cart(self, request, pk):
-        return self.post_method_for_action(request=request, pk=pk,
-                                           serializers=ShoppingCartSerializer)
-
     @staticmethod
-    def delete_method_for_actions(request, pk, model):
+    def delete_actions(request, pk, model):
         user = request.user
         recipe = get_object_or_404(Recipe, id=pk)
         model_object = get_object_or_404(model, user=user, recipe=recipe)
         model_object.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    @action(methods=['POST'], detail=True,
+            permission_classes=[IsAuthenticated])
+    def favorite(self, request, pk):
+        return self.post_action(request=request, pk=pk,
+                                serializers=FavoriteSerializer)
+
+    @action(methods=['POST'], detail=True,
+            permission_classes=[IsAuthenticated],
+            )
+    def shopping_cart(self, request, pk):
+        return self.post_action(request=request, pk=pk,
+                                serializers=ShoppingCartSerializer)
+
     @favorite.mapping.delete
     def delete_favorite(self, request, pk):
-        return self.delete_method_for_actions(
+        return self.delete_actions(
             request=request, pk=pk, model=Favorite
         )
 
     @shopping_cart.mapping.delete
     def delete_shopping_cart(self, request, pk):
-        return self.delete_method_for_actions(
+        return self.delete_actions(
             request=request, pk=pk, model=ShoppingCart
         )
 

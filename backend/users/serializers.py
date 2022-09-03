@@ -1,17 +1,9 @@
-from djoser.serializers import UserSerializer, UserCreateSerializer
+from djoser.serializers import UserSerializer
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 
 from recipes.models import Recipe
 from .models import Follow, User
-
-
-class CustomUserCreateSerializer(UserCreateSerializer):
-    class Meta:
-        model = User
-        fields = (
-            'email', 'username', 'first_name', 'last_name', 'password',
-        )
 
 
 class CustomUserSerializer(UserSerializer):
