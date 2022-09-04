@@ -60,7 +60,6 @@ jobs:
             sudo docker-compose stop
             sudo docker-compose rm web
             sudo docker pull osenev/foodgram_backend
-            cd infra
             rm .env
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
