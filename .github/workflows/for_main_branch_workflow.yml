@@ -42,7 +42,7 @@ jobs:
             context: ./backend
             file: ./backend/Dockerfile 
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/foodgram-backend:latest
+            tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
 
   deploy:
     if: ${{ github.ref == 'refs/heads/master' }}
@@ -58,7 +58,7 @@ jobs:
           script: |
             sudo docker-compose stop
             sudo docker-compose rm web
-            sudo docker pull osenev/foodgram-backend
+            sudo docker pull osenev/foodgram_backend
             cd infra
             rm .env
             touch .env
