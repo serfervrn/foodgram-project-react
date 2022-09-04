@@ -14,9 +14,10 @@ from .serializers import (CustomUserSerializer, FollowListSerializer,
 class CastomUserViewSet(UserViewSet):
     pagination_class = CustomPagination
     serializer = CustomUserSerializer
+
     def get_permissions(self):
         if self.action == 'subscribe' or self.action == 'subscriptions':
-            self.permission_classes = (IsAuthenticated, )
+            self.permission_classes = (IsAuthenticated,)
         return super().get_permissions()
 
     @action(detail=False)
