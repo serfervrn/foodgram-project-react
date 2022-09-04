@@ -91,8 +91,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 f'{ingredient["total"]} '
                 f'{ingredient["ingredient__measurement_unit"]}\n')
 
-        filename = 'shopping_cart.pdf'
-        response = HttpResponse(content, content_type='application/pdf')
+        filename = 'shopping_cart.txt'
+        response = HttpResponse(content, content_type='text/plain')
         response['Content-Disposition'] = (f'attachment;'
                                            f'filename={filename}')
         return response

@@ -61,7 +61,7 @@ jobs:
           script: |
             sudo docker-compose stop
             sudo docker-compose rm web
-            sudo docker pull xxxrichiexxx/foodgram-backend
+            sudo docker pull osenev/foodgram-backend
             cd infra
             rm .env
             touch .env
