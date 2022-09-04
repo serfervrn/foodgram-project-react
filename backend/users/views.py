@@ -5,10 +5,11 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .models import Follow, User
-from .serializers import (FollowListSerializer, FollowSerializer,
-                          CustomUserSerializer)
 from api.pagination import CustomPagination
+
+from .models import Follow, User
+from .serializers import (CustomUserSerializer, FollowListSerializer,
+                          FollowSerializer)
 
 
 class CastomUserViewSet(UserViewSet):
