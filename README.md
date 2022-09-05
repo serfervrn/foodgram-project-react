@@ -1,5 +1,5 @@
 # Дипломная работа Foodgram
-![Yamdb_workflow](https://github.com/serfervrn/foodgram-project-react/workflows/for_main_branch_workflow.yml/badge.svg)
+![Yamdb_workflow](https://github.com/serfervrn/foodgram-project-react/workflows/Foodgram-project-react/badge.svg)
 
 ## Описание
 
