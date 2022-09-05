@@ -59,10 +59,8 @@ SECRET_KEY='...' # секретный ключ Django-проекта
 [![Nginx](https://img.shields.io/badge/-NGINX-464646?style=flat-square&logo=NGINX)](https://nginx.org/ru/)
 [![gunicorn](https://img.shields.io/badge/-gunicorn-464646?style=flat-square&logo=gunicorn)](https://gunicorn.org/)
 [![docker](https://img.shields.io/badge/-Docker-464646?style=flat-square&logo=docker)](https://www.docker.com/)
-
-[//]: # ([![GitHub%20Actions]&#40;https://img.shields.io/badge/-GitHub%20Actions-464646?style=flat-square&logo=GitHub%20actions&#41;]&#40;https://github.com/features/actions&#41;)
-
-[//]: # ([![Yandex.Cloud]&#40;https://img.shields.io/badge/-Yandex.Cloud-464646?style=flat-square&logo=Yandex.Cloud&#41;]&#40;https://cloud.yandex.ru/&#41;)
+[![GitHub%20Actions](https://img.shields.io/badge/-GitHub%20Actions-464646?style=flat-square&logo=GitHub%20actions)](https://github.com/features/actions)
+[![Yandex.Cloud](https://img.shields.io/badge/-Yandex.Cloud-464646?style=flat-square&logo=Yandex.Cloud)](https://cloud.yandex.ru/)
 
 ### Автор проекта:
 Осенев Сергей
