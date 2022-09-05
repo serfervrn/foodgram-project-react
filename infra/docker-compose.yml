@@ -4,12 +4,12 @@ services:
   db:
     image: postgres:13.3-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+       - ./postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
 
   backend:
-    image: osenev/foodgram_backend:v1.00
+    image: osenev/foodgram_backend:latest
     restart: always
     volumes:
       - static_value:/app/static/

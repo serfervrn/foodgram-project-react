@@ -4,11 +4,13 @@
 
 Проект Foodgram - сервис для публикации кулинарных рецептов. 
 
-Демоверсия сайта: 
+Демоверсия сайта: http://158.160.6.30/
+
+Документация API: http://158.160.6.30/api/docs/
 
 Админка: 
-- login: 
-- password: 
+- login: admin@admin.com
+- password: admin
 
 Возможности сервиса:
 
@@ -30,19 +32,22 @@ SECRET_KEY='...' # секретный ключ Django-проекта
 ```
 
 ### Запуск проекта
-
- - Соберите статические файлы:
-    ```
-    sudo docker-compose exec backend python manage.py collectstatic --noinput
-    ```
-    - Примените миграции:
-    ```
-    sudo docker-compose exec backend python manage.py migrate --noinput
-    ```
-    - Создать суперпользователя Django:
-    ```
-    sudo docker-compose exec backend python manage.py createsuperuser
-    ```
+ - Запустите доккер:
+   ```
+   sudo docker-compose up
+   ```
+- Соберите статические файлы:
+   ```
+  sudo docker-compose exec backend python manage.py collectstatic --noinput
+   ```
+- Примените миграции:
+  ```
+  sudo docker-compose exec backend python manage.py migrate --noinput
+  ```
+- Создать суперпользователя Django:
+  ```
+  sudo docker-compose exec backend python manage.py createsuperuser
+  ```
 
 
 ### Используемые технологии
