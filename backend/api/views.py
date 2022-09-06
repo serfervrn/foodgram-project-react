@@ -51,8 +51,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         model_object.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    @action(methods=['POST'], detail=True,
-            permission_classes=[IsAuthenticated])
+    @action(methods=['POST'], detail=True, permission_classes=[IsAuthenticated])
     def favorite(self, request, pk):
         return self.post_action(request=request, pk=pk,
                                 serializers=FavoriteSerializer)
@@ -66,15 +65,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     @favorite.mapping.delete
     def delete_favorite(self, request, pk):
-        return self.delete_actions(
-            request=request, pk=pk, model=Favorite
-        )
+        return self.delete_actions(request=request, pk=pk, model=Favorite)
 
     @shopping_cart.mapping.delete
     def delete_shopping_cart(self, request, pk):
-        return self.delete_actions(
-            request=request, pk=pk, model=ShoppingCart
-        )
+        return self.delete_actions(request=request, pk=pk, model=ShoppingCart)
 
     @action(detail=False, permission_classes=[IsAuthenticated])
     def download_shopping_cart(self, request):
